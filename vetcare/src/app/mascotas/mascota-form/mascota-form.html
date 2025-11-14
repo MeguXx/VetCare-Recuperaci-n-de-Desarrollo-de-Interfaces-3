@@ -1,0 +1,47 @@
+<div class="vc-container">
+  <h2>Registrar Mascota</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="vc-row">
+      <div class="vc-col">
+        <label>Nombre</label>
+        <input type="text" formControlName="nombre" placeholder="Firulais">
+        <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched" class="vc-error">Nombre requerido.</div>
+      </div>
+      <div class="vc-col">
+        <label>Especie</label>
+        <select formControlName="especie">
+          <option value="">-- Elige --</option>
+          <option value="perro">Perro</option>
+          <option value="gato">Gato</option>
+          <option value="otro">Otro</option>
+        </select>
+        <div *ngIf="form.get('especie')?.invalid && form.get('especie')?.touched" class="vc-error">Selecciona especie.</div>
+      </div>
+    </div>
+    <div class="vc-row">
+      <div class="vc-col">
+        <label>Raza</label>
+        <input type="text" formControlName="raza" placeholder="Labrador">
+      </div>
+      <div class="vc-col">
+        <label>Edad</label>
+        <input type="text" formControlName="edad" placeholder="3">
+      </div>
+    </div>
+    <div formGroupName="dueno">
+      <div class="vc-row">
+        <div class="vc-col">
+          <label>Nombre</label>
+          <input type="text" formControlName="nombre" placeholder="Juan Pérez">
+          <div *ngIf="form.get('dueno.nombre')?.invalid && form.get('dueno.nombre')?.touched" class="vc-error">Nombre requerido.</div>
+        </div>
+        <div class="vc-col">
+          <label>Teléfono</label>
+          <input type="text" formControlName="telefono" placeholder="987654321">
+          <div *ngIf="form.get('dueno.telefono')?.invalid && form.get('dueno.telefono')?.touched" class="vc-error">9 dígitos requeridos.</div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="vc-btn" [disabled]="form.invalid">Registrar</button>
+  </form>
+</div>

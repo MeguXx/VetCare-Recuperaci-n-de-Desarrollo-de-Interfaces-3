@@ -1,0 +1,45 @@
+<div class="vc-container">
+  <h2>Agendar Cita</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Selecciona Mascota</label>
+      <select formControlName="mascotaId">
+        <option value="">-- Elige --</option>
+        <option *ngFor="let m of mascotas" [value]="m.id">{{ m.nombre }}</option>
+      </select>
+      <div *ngIf="form.get('mascotaId')?.invalid && form.get('mascotaId')?.touched" class="vc-error">
+        Por favor selecciona una mascota.
+      </div>
+    </div>
+
+    <div>
+      <label>Fecha</label>
+      <input type="date" formControlName="fecha">
+      <div *ngIf="form.get('fecha')?.invalid && form.get('fecha')?.touched" class="vc-error">
+        Ingresa una fecha válida.
+      </div>
+    </div>
+
+    <div>
+      <label>Hora</label>
+      <select formControlName="hora" [disabled]="!form.get('fecha')?.value || availableSlots.length === 0">
+        <option value="">{{ form.get('fecha')?.value ? '-- Elige hora --' : 'Selecciona fecha primero' }}</option>
+        <ng-container *ngIf="availableSlots.length; else noSlots">
+          <option *ngFor="let s of availableSlots" [value]="s">{{ s }}</option>
+        </ng-container>
+        <ng-template #noSlots>
+          <option value="" disabled>No hay franjas disponibles</option>
+        </ng-template>
+      </select>
+      <small class="vc-small" *ngIf="availableSlots.length">Franjas disponibles: {{ availableSlots.length }}</small>
+    </div>
+
+    <div>
+      <label>Motivo</label>
+      <input type="text" formControlName="motivo" placeholder="Ej: Vacunación">
+    </div>
+
+    <button type="submit" class="vc-btn" [disabled]="form.invalid">Agendar</button>
+  </form>
+</div>

@@ -1,0 +1,47 @@
+<div class="vc-container">
+  <h2>Registrar Mascota</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="vc-row">
+      <div class="vc-col">
+            <label>Nombre de la mascota</label>
+            <input type="text" formControlName="nombre" placeholder="Nombre de la mascota">
+            <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched" class="vc-error">Nombre de la mascota requerido.</div>
+      </div>
+      <div class="vc-col">
+        <label>Especie</label>
+        <select formControlName="especie">
+          <option value="">-- Elige --</option>
+          <option value="perro">Perro</option>
+          <option value="gato">Gato</option>
+          <option value="otro">Otro</option>
+        </select>
+        <div *ngIf="form.get('especie')?.invalid && form.get('especie')?.touched" class="vc-error">Selecciona especie.</div>
+      </div>
+    </div>
+    <div class="vc-row">
+      <div class="vc-col">
+            <label>Raza de la mascota</label>
+            <input type="text" formControlName="raza" placeholder="Raza de la mascota">
+      </div>
+      <div class="vc-col">
+            <label>Edad</label>
+            <input type="text" formControlName="edad" placeholder="Edad">
+      </div>
+    </div>
+    <div formGroupName="dueno">
+      <div class="vc-row">
+        <div class="vc-col">
+              <label>Nombre del dueño</label>
+              <input type="text" formControlName="nombre" placeholder="Nombre del dueño">
+              <div *ngIf="form.get('dueno.nombre')?.invalid && form.get('dueno.nombre')?.touched" class="vc-error">Nombre del dueño requerido.</div>
+        </div>
+        <div class="vc-col">
+              <label>Número de teléfono</label>
+              <input type="text" formControlName="telefono" placeholder="Número (9 dígitos)">
+              <div *ngIf="form.get('dueno.telefono')?.invalid && form.get('dueno.telefono')?.touched" class="vc-error">Número debe tener 9 dígitos.</div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="vc-btn" [disabled]="form.invalid">Registrar</button>
+  </form>
+</div>

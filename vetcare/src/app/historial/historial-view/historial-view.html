@@ -1,0 +1,21 @@
+﻿<div class="vc-container">
+  <h2>Historial de Citas</h2>
+
+  <div *ngIf="!pastCitas || pastCitas.length === 0" class="vc-small">No hay citas pasadas.</div>
+
+  <ul class="historial-list">
+    <li *ngFor="let c of pastCitas" class="historial-item">
+      <div>
+        <strong>{{ c.mascotaNombre }}</strong>
+        <div class="vc-small">{{ c.fechaHora | date:'short' }}</div>
+        <div class="vc-small">Motivo: {{ c.motivo || '—' }}</div>
+        <button (click)="eliminar(c.id)" class="vc-btn ghost">Eliminar</button>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<style>
+.historial-list { list-style: none; padding: 0; margin: 0; }
+.historial-item { padding: 12px; margin: 8px 0; background: #fff; border-radius: 6px; border: 1px solid #e5e7eb; }
+</style>

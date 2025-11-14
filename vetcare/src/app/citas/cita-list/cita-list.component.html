@@ -1,0 +1,24 @@
+﻿<div class="vc-container">
+  <h2>Agenda de Citas</h2>
+
+  <div *ngIf="!grouped || grouped.length === 0" class="vc-small">No hay citas programadas.</div>
+
+  <div *ngFor="let g of grouped" class="agenda-day">
+    <h3>{{ g.day | date:'fullDate' }}</h3>
+    <ul>
+      <li *ngFor="let c of g.citas" class="cita-item">
+        <div>
+          <strong>{{ c.mascotaNombre }}</strong>
+          <div class="vc-small">{{ c.fechaHora | date:'shortTime' }} — <span>{{ c.fechaHora | estadoCita }}</span></div>
+          <div class="vc-small">Motivo: {{ c.motivo || '—' }}</div>
+          <button (click)="eliminar(c.id)" class="vc-btn ghost">Eliminar</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<style>
+.agenda-day { margin: 16px 0; padding: 12px; border-left: 3px solid #2d7aee; background: #fbfdff; }
+.cita-item { list-style: none; margin: 8px 0; padding: 10px; background: #fff; border-radius: 6px; border: 1px solid #e5e7eb; }
+</style>
