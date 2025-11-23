@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HistorialView } from './historial-view/historial-view';
+import { HistorialView } from './historial-view/historial-view.component';
 
 const routes: Routes = [
   { path: '', component: HistorialView }

@@ -1,47 +1,89 @@
 <div class="vc-container">
-  <h2>Registrar Mascota</h2>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="vc-row">
-      <div class="vc-col">
-            <label>Nombre de la mascota</label>
-            <input type="text" formControlName="nombre" placeholder="Nombre de la mascota">
-            <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched" class="vc-error">Nombre de la mascota requerido.</div>
-      </div>
-      <div class="vc-col">
-        <label>Especie</label>
-        <select formControlName="especie">
-          <option value="">-- Elige --</option>
-          <option value="perro">Perro</option>
-          <option value="gato">Gato</option>
-          <option value="otro">Otro</option>
-        </select>
-        <div *ngIf="form.get('especie')?.invalid && form.get('especie')?.touched" class="vc-error">Selecciona especie.</div>
-      </div>
+  <div class="form-card">
+
+    <div class="form-header">
+      <h2>Registrar Nueva Mascota</h2>
+      <p>Ingresa los datos del paciente para comenzar</p>
     </div>
-    <div class="vc-row">
-      <div class="vc-col">
-            <label>Raza de la mascota</label>
-            <input type="text" formControlName="raza" placeholder="Raza de la mascota">
-      </div>
-      <div class="vc-col">
-            <label>Edad</label>
-            <input type="text" formControlName="edad" placeholder="Edad">
-      </div>
-    </div>
-    <div formGroupName="dueno">
-      <div class="vc-row">
-        <div class="vc-col">
-              <label>Nombre del dueño</label>
-              <input type="text" formControlName="nombre" placeholder="Nombre del dueño">
-              <div *ngIf="form.get('dueno.nombre')?.invalid && form.get('dueno.nombre')?.touched" class="vc-error">Nombre del dueño requerido.</div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <h4 class="section-title">Datos de la Mascota</h4>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre del Paciente</label>
+          <input type="text" formControlName="nombre" placeholder="Ej: Firulais">
+          <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched" class="error-msg">
+            Requerido
+          </div>
         </div>
-        <div class="vc-col">
-              <label>Número de teléfono</label>
-              <input type="text" formControlName="telefono" placeholder="Número (9 dígitos)">
-              <div *ngIf="form.get('dueno.telefono')?.invalid && form.get('dueno.telefono')?.touched" class="vc-error">Número debe tener 9 dígitos.</div>
+
+        <div class="form-group">
+          <label>Especie</label>
+          <select formControlName="especie">
+            <option value="">-- Seleccionar --</option>
+            <option value="Perro">Perro 🐶</option>
+            <option value="Gato">Gato 🐱</option>
+            <option value="Ave">Ave 🐦</option>
+            <option value="Otro">Otro 🐾</option>
+          </select>
+          <div *ngIf="form.get('especie')?.invalid && form.get('especie')?.touched" class="error-msg">
+            Requerido
+          </div>
         </div>
       </div>
-    </div>
-    <button type="submit" class="vc-btn" [disabled]="form.invalid">Registrar</button>
-  </form>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Raza</label>
+          <input type="text" formControlName="raza" placeholder="Ej: Labrador (Opcional)">
+        </div>
+
+        <div class="form-group">
+          <label>Edad (Años)</label>
+          <input type="number" formControlName="edad" placeholder="0">
+          <div *ngIf="form.get('edad')?.invalid && form.get('edad')?.touched" class="error-msg">
+            Edad inválida
+          </div>
+        </div>
+      </div>
+
+      <h4 class="section-title mt-4">Datos del Propietario</h4>
+
+      <div formGroupName="dueno">
+        <div class="form-row">
+
+          <div class="form-group full-width">
+            <label>Nombre Completo</label>
+            <input type="text" formControlName="nombre" placeholder="Nombre del dueño">
+            <div *ngIf="form.get('dueno.nombre')?.invalid && form.get('dueno.nombre')?.touched" class="error-msg">
+              El nombre del dueño es requerido
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="text" formControlName="telefono" placeholder="9 dígitos">
+            <div *ngIf="form.get('dueno.telefono')?.invalid && form.get('dueno.telefono')?.touched" class="error-msg">
+              Debe tener 9 dígitos
+            </div>
+          </div>
+
+          <div class="form-group"></div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <a routerLink="/mascotas" class="btn-cancel">Cancelar</a>
+        <button type="submit" class="btn-save" [disabled]="form.invalid">
+          Guardar Mascota
+        </button>
+      </div>
+
+    </form>
+  </div>
 </div>

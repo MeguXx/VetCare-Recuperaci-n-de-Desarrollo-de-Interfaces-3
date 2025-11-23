@@ -1,0 +1,46 @@
+<div class="vc-container">
+  <div class="header-actions">
+    <h2>Lista de Mascotas</h2>
+    <a routerLink="/mascotas/registro" class="vc-btn">Nueva Mascota</a>
+  </div>
+
+  <div *ngIf="mascotas.length === 0" class="empty-state">
+    <div class="empty-icon">🐶</div>
+    <p>No tienes mascotas registradas.</p>
+  </div>
+
+  <div class="mascota-grid">
+    <div *ngFor="let m of mascotas" class="mascota-card">
+
+      <div class="card-icon-section">
+        <img
+          [src]="obtenerImagen(m.especie)"
+          [alt]="m.especie"
+          class="pet-image"
+          onerror="this.src='/assets/icons/icon-other-square.jpg'"
+        >
+      </div>
+
+      <div class="card-info">
+        <div class="info-header">
+          <h3>{{ m.nombre }}</h3>
+          <span class="badge-especie">{{ m.especie }}</span>
+        </div>
+
+        <div class="info-detail">
+          <p class="raza"><small>{{ m.raza || 'Raza no especificada' }}</small></p>
+          <p class="dato"><strong>Edad:</strong> {{ m.edad }} años</p>
+          <p class="dato"><strong>Dueño:</strong> {{ m.duenoNombre }}</p>
+          <p class="dato"><strong>Tel:</strong> {{ m.duenoTelefono }}</p>
+        </div>
+      </div>
+
+      <div class="card-actions">
+        <button (click)="eliminar(m.id)" class="btn-delete" title="Eliminar Mascota">
+          🗑️
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

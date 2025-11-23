@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { HistorialRoutingModule } from './historial-routing-module';
-import { HistorialView } from './historial-view/historial-view';
-
+import { HistorialView } from './historial-view/historial-view.component';
+import { SharedModule } from '../shared/shared-module';
 
 @NgModule({
   declarations: [
@@ -11,7 +10,8 @@ import { HistorialView } from './historial-view/historial-view';
   ],
   imports: [
     CommonModule,
-    HistorialRoutingModule
+    HistorialRoutingModule,
+    SharedModule
   ]
 })
 export class HistorialModule { }

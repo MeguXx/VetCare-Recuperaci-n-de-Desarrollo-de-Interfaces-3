@@ -1,0 +1,65 @@
+.header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+
+.empty-state { text-align: center; padding: 60px; background: #fff; border-radius: 16px; border: 2px dashed #e2e8f0; color: #94a3b8; }
+.empty-icon { font-size: 40px; margin-bottom: 10px; }
+
+.mascota-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
+
+.mascota-card {
+  display: flex;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s;
+  border-left: 5px solid #4f46e5;
+}
+.mascota-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+
+/* El contenedor de la izquierda */
+.card-icon-section {
+  background: #f8fafc; /* Color de fondo por si la imagen tarda */
+  width: 100px;        /* Ancho fijo para la imagen */
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #e2e8f0;
+  padding: 0;          /* Quitamos el padding para que la imagen toque los bordes si quieres */
+  overflow: hidden;    /* Para que la imagen no se salga de las esquinas redondeadas */
+}
+
+/* La imagen en sí */
+.pet-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* Esto hace que la imagen llene todo el espacio sin deformarse */
+  display: block;
+}
+
+.icon-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-info { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; }
+
+.info-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.info-header h3 { margin: 0; color: #1e293b; font-size: 1.3rem; }
+
+.badge-especie { background: #f1f5f9; color: #64748b; font-size: 0.7rem; padding: 3px 10px; border-radius: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.info-detail p { margin: 3px 0; color: #475569; font-size: 0.9rem; }
+.raza { text-transform: uppercase; color: #94a3b8 !important; font-size: 0.75rem !important; font-weight: 700; margin-bottom: 8px !important; }
+
+.card-actions { display: flex; align-items: center; padding-right: 20px; }
+.btn-delete {
+  background: #fff1f2; color: #e11d48; border: none;
+  width: 40px; height: 40px; border-radius: 8px;
+  cursor: pointer; font-size: 1.2rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: 0.2s;
+}
+.btn-delete:hover { background: #ffe4e6; transform: scale(1.1); }

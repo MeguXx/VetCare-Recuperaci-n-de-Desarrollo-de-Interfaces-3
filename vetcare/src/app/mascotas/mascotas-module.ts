@@ -1,17 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
-import { MascotaFormComponent } from './mascota-form/mascota-form.component';
 
-const routes: Routes = [
-  { path: '', component: MascotaFormComponent }
-];
+import { MascotasRoutingModule } from './mascotas-routing-module';
 
 @NgModule({
+  declarations: [],
   imports: [
     CommonModule,
-    MascotaFormComponent,
-    RouterModule.forChild(routes)
+    MascotasRoutingModule
   ]
 })
 export class MascotasModule { }

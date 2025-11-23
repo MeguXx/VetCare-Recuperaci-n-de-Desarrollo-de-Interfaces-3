@@ -1,16 +1,16 @@
 ﻿<div class="vc-container">
   <div class="header-actions">
-    <h2>📅 Agenda de Citas</h2>
-    <a routerLink="/citas/agendar" class="vc-btn">Nueva Cita</a>
+    <h2>Historial Clínico</h2> <a routerLink="/home" class="vc-btn ghost">⬅ Volver</a>
   </div>
 
-  <div *ngIf="citas.length === 0" class="empty-state">
+  <div *ngIf="!pastCitas || pastCitas.length === 0" class="empty-state">
     <div class="empty-icon">📂</div>
-    <p>No hay citas próximas.</p>
+    <p>No hay historial registrado.</p>
+    <small>Las citas pasadas aparecerán aquí automáticamente.</small>
   </div>
 
-  <div class="citas-grid">
-    <div *ngFor="let c of citas" class="cita-card" [appHighlight]="c.fechaHora">
+  <div class="historial-grid">
+    <div *ngFor="let c of pastCitas" class="historial-card">
 
       <div class="card-date">
         <span class="date-day">{{ c.fechaHora | date:'dd' }}</span>
@@ -26,17 +26,13 @@
 
         <div class="info-detail">
           <p class="motivo"><strong>Motivo:</strong> {{ c.motivo }}</p>
-          <p class="estado">
-            <span class="badge-estado" [class.urgente]="(c.fechaHora | estadoCita) === 'Próxima'">
-              {{ c.fechaHora | estadoCita }}
-            </span>
-          </p>
-          <p class="hora"><strong>Hora:</strong> {{ c.fechaHora | date:'h:mm a' }}</p>
+          <p class="dueno"><strong>Dueño:</strong> {{ c.duenoNombre }} <span *ngIf="c.duenoTel">({{ c.duenoTel }})</span></p>
+          <p class="hora"><small>Atendido a las: {{ c.fechaHora | date:'HH:mm' }}</small></p>
         </div>
       </div>
 
       <div class="card-actions">
-        <button (click)="eliminar(c.id)" class="btn-delete" title="Cancelar">
+        <button (click)="eliminar(c.id)" class="btn-delete" title="Borrar registro">
           🗑️
         </button>
       </div>

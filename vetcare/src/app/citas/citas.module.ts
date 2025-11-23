@@ -3,9 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
+
 import { CitaFormComponent } from './cita-form/cita-form.component';
 import { CitaListComponent } from './cita-list/cita-list.component';
 import { EstadoCitaPipe } from './pipes/estado-cita.pipe';
+
+
+import { SharedModule } from '../shared/shared-module';
 
 const routes: Routes = [
   { path: '', component: CitaListComponent },
@@ -13,7 +17,16 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [CitaFormComponent, CitaListComponent, EstadoCitaPipe],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(routes)]
+  declarations: [
+    CitaFormComponent,
+    CitaListComponent,
+    EstadoCitaPipe
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    SharedModule, // <--- ¡Esto es lo nuevo y necesario!
+    RouterModule.forChild(routes)
+  ]
 })
 export class CitasModule {}
